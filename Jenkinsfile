@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        AWS_ACCOUNT_ID="YOUR_ACCOUNT_ID_HERE"
-        AWS_DEFAULT_REGION="CREATED_AWS_ECR_CONTAINER_REPO_REGION" 
-        IMAGE_REPO_NAME="ECR_REPO_NAME"
-        IMAGE_TAG="IMAGE_TAG"
+        AWS_ACCOUNT_ID="854929177111"
+        AWS_DEFAULT_REGION="us-east-1" 
+        IMAGE_REPO_NAME="jenkins-demo"
+        IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    
@@ -13,7 +13,7 @@ pipeline {
          stage('Logging into AWS ECR') {
             steps {
                 script {
-                sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+                sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 854929177111.dkr.ecr.us-east-1.amazonaws.com"
                 }
                  
             }
